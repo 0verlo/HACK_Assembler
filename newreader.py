@@ -21,20 +21,6 @@ class asmCode(object):
         self.__symbol_builder(file_name)
         self.file = open(file_name,'r')
 
-    #get HACK default map for pattern convent
-    def __map_init(self):
-       json_file = open("symbols.json",'r')
-       self.__default_map = json.loads(json_file.read())
-       self.__symbol_table = self.__default_map[3]
-       #print(self.__default_map)
-
-    #label analysis
-    def __symbol_table_write(self):
-        #print(self.cur_instruction)
-        key = re.search(r'\(([\w\.\_\$]+)\)',self.cur_instruction).group(1)
-        self.__symbol_table[key] = str(self.code_line+1)
-        print(key+" in line:"+str(self.code_line))
-
     #A-instruction analysys
     def __A_inst_parsing(self):
         value = '0' 
@@ -86,9 +72,7 @@ class asmCode(object):
         if not (string):
             self.cur_type = -1
         #0.symbol_defin
-        elif ('('==string[0]):
-            self.cur_type = 0 
-            self.cur_instruction = self.__commend_clean(string)
+ 
         #1.a_instruction
         elif ('@'==string[0]):
             self.cur_type = 1 
