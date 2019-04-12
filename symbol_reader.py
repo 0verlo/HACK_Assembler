@@ -19,36 +19,13 @@ class jsonReader(object):
         pass
 
 class hackAsmSymbolReader(jsonReader):
-    def __init__(self,fileName):
+    def __init__(self):
         super().__init__("hack_asm_symbols.json")
         self.asmSymbols = self.total_symbol[3]
         self.asmComp = self.total_symbol[0]
         self.asmDest = self.total_symbol[1]
         self.asmJmp = self.total_symbol[2]
-        self.__symbol_builder(fileName):
 
-    #label analysis
-    def __symbol_table_write(self):
-        pass
-        #print(self.cur_instruction)
-        #key = re.search(r'\(([\w\.\_\$]+)\)',self.cur_instruction).group(1)
-        #self.__symbol_table[key] = str(self.code_line+1)
-        #print(key+" in line:"+str(self.code_line))
+a=hackAsmSymbolReader()
 
-    def __symbol_builder(self,fileName):
-        print(self.total_symbol[3])
-        pass
-        #first_round = open(file_name,'r')
-        #for line in first_round:
-        #    self.__str_preprocess(line.strip())
-        #    if(0 == self.cur_type):
-        #        self.__symbol_table_write()
-        ##print(self.__symbol_table)
-        #first_round.close()
-        #self.cur_line = -1
-        #self.code_line = -1
-
-symbol_read = hackAsmSymbolReader("hello")
-symbol_read.symbol_builder()
-
-
+print(a.asmSymbols)
