@@ -1,0 +1,35 @@
+[
+    {
+        "push constant": "@value\nD=A\n@SP\nA=M\nM=D\n@SP\nM=M+1\n",
+		"push temp": "@value\nD=A\n@memSegment\nA=A+D\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n",
+		"pop temp": "@value\nD=A\n@memSegment\nD=A+D\n@R13\nM=D\n@SP\nM=M-1\nA=M\nD=M\n@R13\nA=M\nM=D\n",
+        "pop":  "@value\nD=A\n@memSegment\nD=M+D\n@R13\nM=D\n@SP\nM=M-1\nA=M\nD=M\n@R13\nA=M\nM=D\n",
+        "push": "@value\nD=A\n@memSegment\nA=M+D\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n",
+		"pop pointer": "@SP\nA=M-1\nD=M\n@value\nM=D\n@SP\nM=M-1\n",
+		"push pointer": "@value\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n",
+		"pop static": "@SP\nA=M-1\nD=M\n@value\nM=D\n@SP\nM=M-1\n",
+		"push static": "@value\nD=M\n@SP\nA=M\nM=D\n@SP\nM=M+1\n"
+    },
+    {
+        "add":  "@SP\nA=M-1\nD=M\nA=A-1\nM=D+M\nD=A+1\n@SP\nM=D\n",
+        "sub":  "@SP\nA=M-1\nD=M\nA=A-1\nM=M-D\nD=A+1\n@SP\nM=D\n",
+        "neg":  "@SP\nA=M-1\nM=-M\n",
+        "eq":   "@SP\nM=M-1\nA=M\nD=M\nA=A-1\nD=M-D\n@_forkmark\nD;JEQ\n@SP\nA=M-1\nM=0\n@_endlogic\n0;JMP\n(_forkmark)\n@SP\nA=M-1\nM=-1\n(_endlogic)\n",
+        "gt":   "@SP\nM=M-1\nA=M\nD=M\nA=A-1\nD=M-D\n@_forkmark\nD;JGT\n@SP\nA=M-1\nM=0\n@_endlogic\n0;JMP\n(_forkmark)\n@SP\nA=M-1\nM=-1\n(_endlogic)\n",
+        "lt":   "@SP\nM=M-1\nA=M\nD=M\nA=A-1\nD=M-D\n@_forkmark\nD;JLT\n@SP\nA=M-1\nM=0\n@_endlogic\n0;JMP\n(_forkmark)\n@SP\nA=M-1\nM=-1\n(_endlogic)\n",
+        "and":  "@SP\nM=M-1\nA=M\nD=M\nA=A-1\nM=D&M\n",
+        "or":   "@SP\nM=M-1\nA=M\nD=M\nA=A-1\nM=M|D\n",
+        "not":  "@SP\nA=M-1\nM=!M\n"
+    },	
+    {
+        "SP":       "0",
+        "local":    "1",
+        "argument": "2",
+        "this":     "3",
+        "that":     "4",
+		"temp":     "5",
+		"static":   "16",
+		"pointer":  "",
+		"constant": ""
+    }
+]
